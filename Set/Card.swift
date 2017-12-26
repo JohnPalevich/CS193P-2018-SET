@@ -14,6 +14,7 @@ struct Card{
     var  color : Int = -1
     var  shading : Int = -1
     var  numberOfShapes : Int = -1
+    var  isVisible = false
     init(shapeType shape : Int, colorType color : Int, shadingType shading : Int, numberOfShapes : Int) {
         self.shape = shape
         self.color = color

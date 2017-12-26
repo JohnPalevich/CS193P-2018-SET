@@ -44,7 +44,6 @@
 		5233F44E1FF17559009BFE53 = {
 			isa = PBXGroup;
 			children = (
-				5233F4701FF1808F009BFE53 /* Deck.swift */,
 				5233F4591FF17559009BFE53 /* Set */,
 				5233F4581FF17559009BFE53 /* Products */,
 			);
@@ -61,6 +60,7 @@
 		5233F4591FF17559009BFE53 /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				5233F4701FF1808F009BFE53 /* Deck.swift */,
 				5233F45A1FF17559009BFE53 /* AppDelegate.swift */,
 				5233F45C1FF17559009BFE53 /* ViewController.swift */,
 				5233F46C1FF17B81009BFE53 /* Card.swift */,
