@@ -8,3 +8,9 @@
 
 import Foundation
 
+struct Set{
+    var deck = Deck()
+    init(){
+      
+    }
+}

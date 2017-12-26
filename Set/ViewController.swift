@@ -9,9 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var game = Set()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        setUpBoard()
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +22,16 @@ class ViewController: UIViewController {
     }
     @IBOutlet var cardButtons: [UIButton]!
     @IBAction func addCards(_ sender: UIButton) {
+        
+    }
+    func setUpBoard(){
+        for iterator in 0..<12{
+            cardButtons[iterator].backgroundColor = UIColor.red
+        }
+        for iterator in 12..<24{
+            cardButtons[iterator].backgroundColor = UIColor.clear
+            cardButtons[iterator].setTitle("", for: .normal )
+        }
     }
     
 }

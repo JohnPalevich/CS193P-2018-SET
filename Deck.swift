@@ -13,7 +13,6 @@ struct Deck {
     
     init()
     {
-        let iterator = 0
         for shapeType in 0..<3
         {
             for colorType in 0..<3
@@ -22,7 +21,7 @@ struct Deck {
                 {
                     for numberOfShapes in 0..<3
                     {
-                        cardDeck[iterator] = Card(shapeType: shapeType, colorType: colorType, shadingType: shadingType, numberOfShapes: numberOfShapes)
+                        cardDeck.append(Card(shapeType: shapeType, colorType: colorType, shadingType: shadingType, numberOfShapes: numberOfShapes))
                     }
                 }
             }
