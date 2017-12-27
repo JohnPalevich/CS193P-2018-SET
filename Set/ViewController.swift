@@ -11,9 +11,13 @@ import UIKit
 class ViewController: UIViewController {
     var game = Set()
     var numVisible = 0
+    var cardsDrawn = [Card]()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        for iterator in 0..<cardButtons.count{
+            cardButtons[iterator].layer.cornerRadius = 8.0
+        }
         setUpBoard()
     }
 
@@ -21,19 +25,47 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func touchCard(_ sender: UIButton) {
+        let index = cardButtons.index(of: sender)
+        if index! < cardsDrawn.count
+        {
+            if(cardsDrawn[index!].isSelected)
+            {
+                sender.layer.borderWidth = 0.0
+                sender.layer.borderColor = UIColor.clear.cgColor
+                cardsDrawn[index!].isSelected = false
+            }
+            else
+            {
+                sender.layer.borderWidth = 3.0
+                sender.layer.borderColor = UIColor.blue.cgColor
+                cardsDrawn[index!].isSelected = true
+            }
+        }
+        
+    }
+    
     @IBOutlet var cardButtons: [UIButton]!
+    @IBAction func newGame(_ sender: UIButton) {
+        setUpBoard()
+    }
     @IBAction func addCards(_ sender: UIButton) {
         if(numVisible < 24)
         {
             drawCards()
         }
-        
     }
     func setUpBoard(){
-        for iterator in 0..<24{
+        for iterator in 0..<cardButtons.count{
             cardButtons[iterator].backgroundColor = UIColor.clear
-            cardButtons[iterator].setTitle("", for: .normal )
+            cardButtons[iterator].setAttributedTitle(NSAttributedString(string : ""), for: .normal)
+            cardButtons[iterator].layer.borderWidth = 0.0
+            cardButtons[iterator].layer.borderColor = UIColor.clear.cgColor
+            
         }
+        game = Set()
+        numVisible = 0
+        drawCards()
         drawCards()
         drawCards()
         drawCards()
@@ -89,6 +121,7 @@ class ViewController: UIViewController {
             {
                 attributedDictionary[NSAttributedStringKey.foregroundColor] = color.withAlphaComponent(0.15)
             }
+            cardsDrawn.append(newCards[iterator])
             let attributedString = NSAttributedString(string : cardString, attributes: attributedDictionary)
             cardButtons[numVisible+iterator].setAttributedTitle(attributedString, for: .normal)
             

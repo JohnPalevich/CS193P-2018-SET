@@ -38,7 +38,7 @@ struct Deck {
     }
     mutating func drawCards() -> [Card] {
         var returnedCardDeck = [Card]()
-        for iterator in 0..<3
+        for _ in 0..<3
         {
             returnedCardDeck.append(cardDeck.removeFirst())
         }
