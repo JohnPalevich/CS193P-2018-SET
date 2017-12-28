@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     var game = Set()
     var numVisible = 0
     var cardsDrawn = [Card]()
+    var selectedButtons = [UIButton]()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,20 +30,41 @@ class ViewController: UIViewController {
         let index = cardButtons.index(of: sender)
         if index! < cardsDrawn.count
         {
-            if(cardsDrawn[index!].isSelected)
+            if cardsDrawn[index!].isSelected
             {
                 sender.layer.borderWidth = 0.0
                 sender.layer.borderColor = UIColor.clear.cgColor
                 cardsDrawn[index!].isSelected = false
+                game.deselectCard(cardsDrawn[index!])
+                selectedButtons.remove(at: selectedButtons.index(of: sender)!)
             }
-            else
+            else if game.numOfSelectedCards < 3
             {
                 sender.layer.borderWidth = 3.0
                 sender.layer.borderColor = UIColor.blue.cgColor
                 cardsDrawn[index!].isSelected = true
+                selectedButtons.append(sender)
+                let threeCardsSelected = game.selectCard(cardsDrawn[index!])
+                if threeCardsSelected{
+                    game.checkForSet()
+                }
+                
+            }
+            else{
+                deselectButtons(index)
             }
         }
         
+    }
+    func deselectButtons(_ index : Int?){
+        for iterator in 0..<selectedButtons.count{
+            game.selectedCards = [Card]()
+            game.numOfSelectedCards =  0
+            selectedButtons[iterator].layer.borderWidth = 0.0
+            selectedButtons[iterator].layer.borderColor = UIColor.clear.cgColor
+            cardsDrawn[index!].isSelected = false
+        }
+        print(game.selectedCards)
     }
     
     @IBOutlet var cardButtons: [UIButton]!

@@ -10,7 +10,31 @@ import Foundation
 
 struct Set{
     var deck = Deck()
+    var numOfSelectedCards = 0;
+    var selectedCards = [Card]()
     init(){
       
     }
+    mutating func selectCard(_ selectedCard: Card) -> Bool{
+        numOfSelectedCards+=1
+        selectedCards.append(selectedCard)
+        if(numOfSelectedCards == 3)
+        {
+            return true
+        }
+        return false
+    }
+    func checkForSet()
+    {
+        
+    }
+    mutating func deselectCard(_ deselectedCard : Card){
+        numOfSelectedCards-=1
+        if selectedCards.index(of: deselectedCard) != nil
+        {
+            selectedCards.remove(at: selectedCards.index(of: deselectedCard)!)
+        }
+        
+    }
 }
+
