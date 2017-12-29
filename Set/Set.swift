@@ -12,6 +12,7 @@ struct Set{
     var deck = Deck()
     var numOfSelectedCards = 0;
     var selectedCards = [Card]()
+    var points = 0
     init(){
       
     }
@@ -24,9 +25,16 @@ struct Set{
         }
         return false
     }
-    func checkForSet()
+    mutating func checkForSet()
     {
-        
+        let colorDiff = (selectedCards[0].color != selectedCards[1].color) && (selectedCards[1].color != selectedCards[2].color)
+        let shapeDiff = (selectedCards[0].shape != selectedCards[1].shape) && (selectedCards[1].shape != selectedCards[2].shape)
+        let numDiff = (selectedCards[0].numberOfShapes != selectedCards[1].numberOfShapes) && (selectedCards[1].numberOfShapes != selectedCards[2].numberOfShapes)
+        let shadeDiff = (selectedCards[0].shading != selectedCards[1].shading) && (selectedCards[1].shading != selectedCards[2].shading)
+        if(colorDiff && shadeDiff && numDiff && shapeDiff)
+        {
+            points += 3
+        }
     }
     mutating func deselectCard(_ deselectedCard : Card){
         numOfSelectedCards-=1
